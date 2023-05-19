@@ -3,10 +3,19 @@ import axios from "axios";
 
 import Charts from "./components/Charts";
 import Navbar from "./components/Navbar";
+import useGeceModuAc from "./components/hooks/geceModuAc";
 
 const App = () => {
   const [coinData, setCoinData] = useState([]);
-  const [geceModu, setGeceModu] = useState(false);
+  const [geceModu, setGeceModu] = useGeceModuAc();
+
+  useEffect(() => {
+    if (geceModu) {
+      document.body.classList.add('gece-modu')
+    } else {
+      document.body.classList.remove('gece-modu')
+    }
+  }, [geceModu]);
 
   useEffect(() => {
     axios
